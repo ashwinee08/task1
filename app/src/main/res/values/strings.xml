@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">Task1</string>
+    <string name="image_to_be_shown">image_to_be_shown</string>
+    <string name="something_about_the_picture">something about the picture</string>
+</resources>

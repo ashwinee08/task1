@@ -13,11 +13,36 @@ import android.view.ViewGroup;
 
 import com.example.task1.R;
 import com.example.task1.adapters.RecyclerViewAdapter;
+import com.example.task1.interfaces.ChangePicture;
 
-public class FragmentRecyclerView extends Fragment {
+public class FragmentRecyclerView extends Fragment{
 
     private RecyclerView recyclerView;
     private Context context;
+    private String[] texts={
+            "Watermelon",
+            "Apple",
+            "Banana",
+            "Orange",
+            "Strawberry",
+            "Watermelon",
+            "Apple",
+            "Banana",
+            "Orange",
+            "Strawberry"
+    };
+    private int[] images={
+            R.drawable.watermelon,
+            R.drawable.apple,
+            R.drawable.banana,
+            R.drawable.orange,
+            R.drawable.straw,
+            R.drawable.watermelon,
+            R.drawable.apple,
+            R.drawable.banana,
+            R.drawable.orange,
+            R.drawable.straw
+    };
 
     @Override
     public void onAttach(Context context) {
@@ -32,9 +57,7 @@ public class FragmentRecyclerView extends Fragment {
         recyclerView=view.findViewById(R.id.recyceler_view);
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(context));
-        recyclerView.setAdapter(new RecyclerViewAdapter(context));
+        recyclerView.setAdapter(new RecyclerViewAdapter(context,images,texts));
         return view;
     }
-
-
 }

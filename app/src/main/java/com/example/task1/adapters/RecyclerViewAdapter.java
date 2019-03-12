@@ -8,15 +8,23 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import com.example.task1.MainActivity;
 import com.example.task1.R;
+import com.example.task1.interfaces.ChangePicture;
 
 public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapter.RecyclerViewHolder>  {
 
 
     private Context context;
-    public RecyclerViewAdapter(Context context){
+    private ChangePicture changePicture= (ChangePicture) context;
+    private int[] images;
+    private String[] texts;
+    public RecyclerViewAdapter(Context context,int[] images, String[] texts){
         this.context=context;
+        this.images =images;
+        this.texts=texts;
     }
 
     @NonNull
@@ -29,12 +37,13 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
 
     @Override
     public void onBindViewHolder(@NonNull RecyclerViewHolder recyclerViewHolder, int i) {
-
+        recyclerViewHolder.imageView.setImageResource(images[i]);
+        recyclerViewHolder.textView.setText(texts[i]);
     }
 
     @Override
     public int getItemCount() {
-        return 20;
+        return texts.length;
     }
 
     public class RecyclerViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
@@ -49,7 +58,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
 
         @Override
         public void onClick(View v) {
-
+           
         }
     }
 }

@@ -18,11 +18,13 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
 
 
     private Context context;
-    private ChangePicture changePicture= (ChangePicture) context;
+    private ChangePicture changePicture;
     private int[] images;
     private String[] texts;
+
     public RecyclerViewAdapter(Context context,int[] images, String[] texts){
         this.context=context;
+        changePicture = (ChangePicture)context;
         this.images =images;
         this.texts=texts;
     }
@@ -31,6 +33,12 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
     @Override
     public RecyclerViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int i) {
         View view = LayoutInflater.from(context).inflate(R.layout.recycler_view_inner_layout,parent,false);
+        view.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                changePicture.changeThePictureWithId(v);
+            }
+        });
         RecyclerViewHolder recyclerViewHolder = new RecyclerViewHolder(view);
         return recyclerViewHolder;
     }
@@ -46,7 +54,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
         return texts.length;
     }
 
-    public class RecyclerViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
+    public class RecyclerViewHolder extends RecyclerView.ViewHolder{
 
         ImageView imageView;
         TextView textView;
@@ -54,11 +62,6 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
             super(itemView);
             imageView=itemView.findViewById(R.id.image_in_list);
             textView=itemView.findViewById(R.id.text_for_image);
-        }
-
-        @Override
-        public void onClick(View v) {
-           
         }
     }
 }
